@@ -2,6 +2,7 @@ LEV_Charger_GUI
 ===============
 
 Qt based GUI for Solar-LEV-Charger
+
 The RPi realizes HMI, RFID-authentification and EnergyBus communication
 for LEV-Solar-Charge-Station
 

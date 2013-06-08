@@ -35,10 +35,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void setupRealtimeDataDemo(QCustomPlot *customPlot);
+    void setupRealtimeMPPplotting(QCustomPlot *customPlot);
+    void setupRealtimeLEVplotting(QCustomPlot *customPlot);
     
 private slots:
-//    void realtimeDataSlot();
+    void realtimeDataSlot_3();
     void realtimeDataSlot_2();
 
     void on_checkBox_toggled(bool checked);
@@ -49,10 +50,13 @@ private slots:
 
     void on_pushButton_released();
 
+    void on_checkBox_3_toggled(bool checked);
+
+    void on_checkBox_4_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
-    QString demoName;
-    QTimer dataTimer;
+    QTimer dataTimer, dataTimer_2;
 };
 
 #endif // MAINWINDOW_H

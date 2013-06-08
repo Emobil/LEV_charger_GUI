@@ -6,8 +6,9 @@
 #include "qcustomplot.h"
 
 
-#define SLAVE_ADDRESS 0x55
-#define I2C_DEV "/dev/i2c-0"
+//#define SLAVE_ADDRESS 0x55
+#define SLAVE_ADDRESS 0x13
+#define I2C_DEV "/dev/i2c-1"
 #define I2C_BUFFER_SIZE 10 // Number of Bytes
 
 /* TWI commands for µC */

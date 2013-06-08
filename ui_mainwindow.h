@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Jun 8 14:10:43 2013
-**      by: Qt User Interface Compiler version 4.8.2
+** Created: Sat Jun 8 15:34:34 2013
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -212,7 +212,7 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "Horizontal Angle", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Nachf\303\274hrung", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Sun-Tracking", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

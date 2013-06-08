@@ -30,11 +30,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-unsigned char r_buffer[I2C_BUFFER_SIZE],w_buffer[I2C_BUFFER_SIZE];
+
+QString r_buffer[I2C_BUFFER_SIZE],w_buffer[I2C_BUFFER_SIZE];
 unsigned char u_sollwert;
 double value0 = 0.0, value1 = 0.0, value2 = 0.0, value3 = 0.0, Umax, Imax;
 
-int i2c_read (int slaveaddr, int length, unsigned char *buffer){
+int i2c_read (int slaveaddr, int length, QString *buffer){
         int deviceHandle = open(I2C_DEV,O_RDWR);
         ioctl(deviceHandle, I2C_SLAVE, slaveaddr);
  //       write(deviceHandle, 0x00, 0);
@@ -43,7 +44,7 @@ int i2c_read (int slaveaddr, int length, unsigned char *buffer){
         return 0;
 }
 
-int i2c_write (int slaveaddr, int length, unsigned char *buffer){
+int i2c_write (int slaveaddr, int length, QString *buffer){
         int deviceHandle = open(I2C_DEV,O_WRONLY);
         ioctl(deviceHandle, I2C_SLAVE, slaveaddr);
         write(deviceHandle, buffer, length);
@@ -203,7 +204,10 @@ void MainWindow::realtimeDataSlot_2()
   value2 = (value2 + ((((double)((r_buffer[7] << 8 ) | r_buffer[8]) / 2048.0) ) / ( 1.0 + 18000.0/4700.0 )) / 0.02) / 2;     // I_OUT
   value3 = (value3 + ((((double)((r_buffer[3] << 8 ) | r_buffer[4]) / 2048.0) ) / ( 1.0 + 220000.0/2100.0 )) / 0.001) / 2;    // I_IN
 */
+  i2c_read(SLAVE_ADDRESS , I2C_BUFFER_SIZE , r_buffer);
 
+//  ui->label_6->setText(r_buffer[2]);
+//  ui->label_7->setText(r_buffer[3]);
 
   static double lastPointKey = 0;
 
@@ -257,13 +261,13 @@ void MainWindow::realtimeDataSlot_3()
   double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
   w_buffer[0] = TWI_CMD_GET_LEV_DATA;
 
-  i2c_write (SLAVE_ADDRESS, 1, w_buffer);
-  i2c_read(SLAVE_ADDRESS , I2C_BUFFER_SIZE , r_buffer);
+ // i2c_write (SLAVE_ADDRESS, 1, w_buffer);
+/*  i2c_read(SLAVE_ADDRESS , I2C_BUFFER_SIZE , r_buffer);
   value0 = (value0 + ((double)((r_buffer[5] << 8 ) | r_buffer[6]) / 2048.0)* 130000.0 / 1740.0) / 2.0; //  U_Out
   value1 = (value1 + ((double)((r_buffer[1] << 8 ) | r_buffer[2]) / 2048.0)* 130000.0 / 1740.0) / 2.0; //  U_IN
   value2 = (value2 + ((((double)((r_buffer[7] << 8 ) | r_buffer[8]) / 2048.0) ) / ( 1.0 + 18000.0/4700.0 )) / 0.02) / 2;     // I_OUT
   value3 = (value3 + ((((double)((r_buffer[3] << 8 ) | r_buffer[4]) / 2048.0) ) / ( 1.0 + 220000.0/2100.0 )) / 0.001) / 2;    // I_IN
-
+*/
   static double lastPointKey = 0;
 
   if (key-lastPointKey > 0.5) // at most add point every 10 ms

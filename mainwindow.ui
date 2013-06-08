@@ -276,7 +276,7 @@
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Nachführung</string>
+        <string>Sun-Tracking</string>
        </attribute>
        <widget class="QLabel" name="label">
         <property name="geometry">
